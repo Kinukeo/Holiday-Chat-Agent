@@ -31,15 +31,31 @@
 </template>
 
 <script>
+import MessageService from "../../services/messageService";
+
 export default {
   data() {
     return {
-      items: [{ content: "Foo", sender: "First Holiday" }],
+      items: [
+        {
+          content:
+            "Thank you for choosing First Holiday LTD. Would you prefer a lazy or active holiday?",
+          sender: "First Holiday",
+        },
+      ],
     };
   },
   methods: {
-    addUserMessage(userMessage) {
+    async addUserMessage(userMessage) {
       this.items.push({ content: userMessage, sender: "You" });
+      const resp = await MessageService.sendMessage({
+        sender: "You",
+        content: userMessage,
+      });
+      this.addAgentMessage(resp.data);
+    },
+    addAgentMessage(agentMessage) {
+      this.items.push({ content: agentMessage, sender: "First Holiday" });
     },
   },
 };
