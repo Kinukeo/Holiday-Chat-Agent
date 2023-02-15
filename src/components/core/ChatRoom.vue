@@ -1,5 +1,13 @@
 <template>
-  <div style="display: flex; flex-direction: column" class="ma-3">
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      max-height: 70vh;
+    "
+    class="ma-3"
+  >
     <!-- <v-list :items="items"></v-list> -->
     <div
       v-for="item in items"

@@ -1,6 +1,4 @@
 <template>
-  <!-- <v-footer style="height: fit content" class="bg-deep-orange-darken-1"> -->
-
   <v-textarea
     id="textarea"
     style="
@@ -16,7 +14,7 @@
     @click:append-inner="emitUserMessage"
     @keydown.enter.prevent="emitUserMessage"
     no-resize
-    rows="3"
+    rows="1"
   ></v-textarea>
 </template>
 
