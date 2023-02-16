@@ -1,14 +1,12 @@
 <template>
   <v-app>
-    <v-main class="bg-grey-lighten-5">
-      <AppBar />
-      <ChatRoom ref="chatRoom" />
-      <MessageArea
-        @sendUserMessage="
-          (userMessage) => $refs.chatRoom.addUserMessage(userMessage)
-        "
-      />
-    </v-main>
+    <AppBar />
+    <ChatRoom ref="chatRoom" />
+    <MessageArea
+      @sendUserMessage="
+        (userMessage) => $refs.chatRoom.addUserMessage(userMessage)
+      "
+    />
   </v-app>
 </template>
 

@@ -1,10 +1,11 @@
 <template>
+  <NameDialog @addUserName="(addUserName) => (userName = addUserName)" />
   <div
     style="
       display: flex;
       flex-direction: column;
       overflow-y: auto;
-      max-height: 70vh;
+      max-height: 76vh;
     "
     class="ma-3"
   >
@@ -40,10 +41,15 @@
 
 <script>
 import MessageService from "../../services/messageService";
+import NameDialog from "./NameDialog.vue";
 
 export default {
+  components: {
+    NameDialog,
+  },
   data() {
     return {
+      userName: "",
       items: [
         {
           content:
@@ -55,9 +61,9 @@ export default {
   },
   methods: {
     async addUserMessage(userMessage) {
-      this.items.push({ content: userMessage, sender: "You" });
+      this.items.push({ content: userMessage, sender: this.userName });
       const resp = await MessageService.sendMessage({
-        sender: "You",
+        sender: this.userName,
         content: userMessage,
       });
       this.addAgentMessage(resp.data);
@@ -65,6 +71,7 @@ export default {
     addAgentMessage(agentMessage) {
       this.items.push({ content: agentMessage, sender: "First Holiday" });
     },
+    addUserName() {},
   },
 };
 </script>
