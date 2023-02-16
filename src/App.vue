@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <AppBar />
+    <AppBar
+      @downloadChatMessages="() => $refs.chatRoom.downloadChatMessages()"
+    />
     <ChatRoom ref="chatRoom" />
     <MessageArea
       @sendUserMessage="

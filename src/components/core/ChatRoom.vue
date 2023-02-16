@@ -42,6 +42,7 @@
 <script>
 import MessageService from "../../services/messageService";
 import NameDialog from "./NameDialog.vue";
+import { saveAs } from "file-saver";
 
 export default {
   components: {
@@ -71,7 +72,12 @@ export default {
     addAgentMessage(agentMessage) {
       this.items.push({ content: agentMessage, sender: "First Holiday" });
     },
-    addUserName() {},
+    downloadChatMessages() {
+      const blob = new Blob([JSON.stringify(this.items, null, 4)], {
+        type: "application/json",
+      });
+      saveAs(blob, "chat log.json");
+    },
   },
 };
 </script>
